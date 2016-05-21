@@ -19,7 +19,7 @@
 	</bean>
 	
 	<!-- Scans the classpath of this application for @Components to deploy as beans -->
-	<context:component-scan base-package="org.buzheng.demo.esm" />
+	<context:component-scan base-package="cn.iszt.ms" />
 	
 	<!-- Configures the @Controller programming model -->
 	<!--mvc:annotation-driven / -->
