@@ -1,4 +1,4 @@
-package org.buzheng.demo.esm;
+package cn.iszt.ms;
 
 /**
  * 全局配置和定义类

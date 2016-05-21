@@ -41,8 +41,8 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="configLocation" value="classpath:config/mybatis/mybatis-config.xml" />
-        <property name="mapperLocations" value="classpath:org/buzheng/demo/esm/dao/mybatis/*Mapper.xml" />
-        <property name="typeAliasesPackage" value="org.buzheng.demo.esm.domain" />
+        <property name="mapperLocations" value="classpath:cn/iszt/ms/dao/mybatis/*Mapper.xml" />
+        <property name="typeAliasesPackage" value="cn.iszt.ms.domain" />
     </bean>
 
     <!-- scan for mappers and let them be autowired -->
@@ -50,6 +50,6 @@
         <property name="basePackage" value="${MapperInterfacePackage}" />
     </bean-->
     
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" p:basePackage="org.buzheng.demo.esm.dao" />
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" p:basePackage="cn.iszt.ms.dao" />
     
 </beans>
