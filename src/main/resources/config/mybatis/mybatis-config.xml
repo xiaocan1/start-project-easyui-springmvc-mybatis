@@ -13,7 +13,7 @@
 	
 	<plugins>
 		<plugin interceptor="cn.iszt.ms.common.mybatis.MybatisPaginationInterceptor">
-		    <property name="dialectClass" value="cn.iszt.ms.common.mybatis.OracleDialect"/>
+		    <property name="dialectClass" value="cn.iszt.ms.common.mybatis.MySQLDialect"/>
 		</plugin>
 	</plugins>
 

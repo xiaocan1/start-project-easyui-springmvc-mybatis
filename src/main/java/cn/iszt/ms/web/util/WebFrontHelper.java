@@ -36,47 +36,52 @@ public class WebFrontHelper {
 		
 		Map<String, EasyuiTreeNode> map = new LinkedHashMap<String, EasyuiTreeNode>();
 		EasyuiTreeNode root = new EasyuiTreeNode();
-		root.setId("root");
-		root.setText("Root");
-		map.put("root", root);
-		
-		for (SysMenu menu : menus) {
-			EasyuiTreeNode node = new EasyuiTreeNode();
-			node.setId(menu.getMenuId());
-			node.setText(menu.getMenuName());
-			node.setParentId(menu.getParentMenuId());
-			node.setAttributes(menu);
+		try {
+			root.setId("root");
+			root.setText("Root");
+			map.put("root", root);
 			
-			map.put(node.getId(), node);
-		}
-		
-		for (Map.Entry<String, EasyuiTreeNode> entry : map.entrySet()) {
-			EasyuiTreeNode node = entry.getValue();
-			
-			if ("root".equals(node.getId())) {
-				continue;
-			}
-			
-			String parentId = node.getParentId();
-			
-			if (parentId == null || "".equals(parentId)) {
-				parentId = "root";
-			}
-			
-			map.get(parentId).addChild(node);
-		}
-		
+			for (SysMenu menu : menus) {
+				EasyuiTreeNode node = new EasyuiTreeNode();
+				node.setId(menu.getMenuId());
+				node.setText(menu.getMenuName());
+				node.setParentId(menu.getParentMenuId());
+				node.setAttributes(menu);
 				
-		if (menuIdsForChecked != null && menuIdsForChecked.size() > 0) {
+				map.put(node.getId(), node);
+			}
+			
 			for (Map.Entry<String, EasyuiTreeNode> entry : map.entrySet()) {
 				EasyuiTreeNode node = entry.getValue();
+				
+				if ("root".equals(node.getId())) {
+					continue;
+				}
+				
+				String parentId = node.getParentId();
+				
+				if (parentId == null || "".equals(parentId)) {
+					parentId = "root";
+				}
+				
+				EasyuiTreeNode esyNode = map.get(parentId);
+				esyNode.addChild(node);
+			}
 			
-				if (menuIdsForChecked.contains(node.getId())) {
-					node.setChecked(true);
+					
+			if (menuIdsForChecked != null && menuIdsForChecked.size() > 0) {
+				for (Map.Entry<String, EasyuiTreeNode> entry : map.entrySet()) {
+					EasyuiTreeNode node = entry.getValue();
+				
+					if (menuIdsForChecked.contains(node.getId())) {
+						node.setChecked(true);
+					}
 				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-
+		
 		return root;
 	}
 	

@@ -40,3 +40,6 @@ values ('root', '6E62020D770346F08A4287FF205EEB8F');
 
 insert into sys_role_menu (ROLE_ID, MENU_ID)
 values ('root', '8C95B11FF4C042DDB3AF2C467B593295');
+
+insert into sys_role_menu (ROLE_ID, MENU_ID)
+values ('root', '65E16E3E1EFC484A8CBD2AD77D8D3F92');
