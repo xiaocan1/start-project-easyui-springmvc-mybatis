@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.iszt.ms.dao.SysGroupDao">
+
+    <insert id="save" parameterType="SysGroup">
+        insert into sys_group (group_id, group_name, group_no, remark) 
+        values (UUID(), #{groupName}, #{groupNo}, #{remark})
+    </insert>
+    
+    <update id="update" parameterType="SysGroup">
+        update sys_group g 
+        set 
+        		g.group_name = #{groupName}, 
+        		g.group_no = #{groupNo}, 
+        		remark = #{remark}
+        where 	g.group_id = #{groupId}
+    </update>
+    
+    <delete id="delete" parameterType="string">
+        delete from sys_group g where g.group_id = #{groupId}
+    </delete>
+    
+    <sql id="findSql">
+        select 
+        		g.group_id, 
+        		g.group_no, 
+        		g.group_name, 
+        		g.remark 
+        from 
+        		sys_group g
+    </sql>
+    
+    <select id="findAll" resultType="SysGroup">
+        <include refid="findSql" />
+        order by g.add_time
+    </select>
+    
+    <select id="findById" resultType="SysGroup">
+        <include refid="findSql" />
+        where g.group_id = #{groupId}
+    </select>
+    
+    <select id="findByGroupName" resultType="SysGroup">
+        <include refid="findSql" />
+        where g.group_name = #{groupName}
+    </select>
+	
+</mapper>
